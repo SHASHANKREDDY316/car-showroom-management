@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="form-container">
+
+<h2>Add New Car</h2>
+
+<form method="POST">
+
+<input type="text" name="name" placeholder="Car Name" required>
+<input type="text" name="model" placeholder="Model" required>
+<input type="text" name="price" placeholder="Price" required>
+<input type="text" name="owner" placeholder="Owner Name" required>
+
+<button>Add Car</button>
+
+</form>
+
+</div>
+
+{% endblock %}

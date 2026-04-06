@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login - SSR Car Showroom</title>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-container {
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 14px;
+            width: 340px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.4);
+            text-align: center;
+        }
+
+        .logo-circle {
+            width: 70px;
+            height: 70px;
+            background: #2c5364;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 30px;
+            margin: 0 auto 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .brand {
+            font-size: 22px;
+            font-weight: bold;
+            color: #2c5364;
+        }
+
+        .tagline {
+            font-size: 12px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+
+        label {
+            font-size: 14px;
+            color: #555;
+        }
+
+        input {
+            width: 100%;
+            padding: 11px;
+            margin-top: 5px;
+            border: 1px solid #ccc;
+            border-radius: 6px;
+            outline: none;
+            transition: 0.3s;
+        }
+
+        input:focus {
+            border-color: #2c5364;
+            box-shadow: 0 0 5px rgba(44, 83, 100, 0.4);
+        }
+
+        .btn {
+            width: 100%;
+            padding: 11px;
+            margin-top: 15px;
+            border: none;
+            background: #2c5364;
+            color: white;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn:hover {
+            background: #1b3c4a;
+        }
+
+        .error {
+            color: red;
+            font-size: 14px;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="login-container">
+    <div class="logo-circle">🐻</div>
+    <div class="brand">SSR Car Showroom</div>
+    <div class="tagline">Premium Vehicle Management System</div>
+
+    <h2>Admin Login</h2>
+
+    <form id="loginForm">
+        <div class="form-group">
+            <label>User ID</label>
+            <input type="text" id="userid" placeholder="Enter User ID" required>
+        </div>
+
+        <div class="form-group">
+            <label>Password</label>
+            <input type="password" id="password" placeholder="Enter Password" required>
+        </div>
+
+        <button type="submit" class="btn">Login</button>
+    </form>
+
+    <p id="error" class="error"></p>
+</div>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const userid = document.getElementById('userid').value.trim();
+    const password = document.getElementById('password').value.trim();
+    const errorMsg = document.getElementById('error');
+
+    if (userid === "admin" && password === "1234") {
+        fetch('/login', {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({userid: userid, password: password})
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.href = '/home';  // ✅ FIXED
+            } else {
+                errorMsg.textContent = "Login failed. Try again.";
+            }
+        });
+    } else {
+        errorMsg.textContent = "Invalid credentials! Use: admin / 1234";
+    }
+});
+</script>
+
+</body>
+</html>

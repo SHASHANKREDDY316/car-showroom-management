@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="hero">
+    <div class="hero-text-wrapper">
+        <h1>Premium Car Showroom</h1>
+        <p>Manage your luxury fleet like a professional dealership</p>
+
+        <div class="home-buttons">
+            <!-- <a href="/home" class="btn-primary">Get Started</a> -->
+            <a href="/addcar">Add New Car</a>
+            <a href="/viewcars" class="btn-outline">Browse Inventory</a>
+        </div>
+    </div>
+</div>
+
+<section class="container" style="padding: 60px 20px; text-align: center;">
+    <h2 class="title">Showroom Management Simplified</h2>
+    <div class="car-grid">
+        <div class="card">
+            <div class="card-content">
+                <h3>Track Inventory</h3>
+                <p>Keep your garage updated with real-time editing.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <h3>Analytics</h3>
+                <p>Visualize your sales and fleet value instantly.</p>
+            </div>
+        </div>
+        <div class="card">
+            <div class="card-content">
+                <h3>Cloud Access</h3>
+                <p>Manage your showroom from any device, anywhere.</p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
